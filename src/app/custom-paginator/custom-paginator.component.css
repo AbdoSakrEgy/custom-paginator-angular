@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .card {
+    @apply flex flex-col w-fit border border-gray-300 p-5;
+  }
+  .img-card {
+    @apply w-[190px] h-[150px];
+  }
+  .btnDetails {
+    @apply px-4 py-2 border shadow-md rounded-md;
+  }
+  .btnComplete {
+    @apply px-4 py-2 border shadow-md rounded-md bg-[#f64236] text-white;
+  }
+  .btnOfPagination {
+    @apply border border-black rounded-full w-7 h-7;
+  }
+  .btnOfPaginationActive {
+    @apply border border-black rounded-full w-7 h-7 bg-black text-white;
+  }
+}
