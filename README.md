@@ -4,7 +4,7 @@ How to paginate some data using custom styles.
 
 ## Demo
 
-Check out the live demo of the "custom-paginator" project: [Live Demo](https://abdosakregy.github.io/custom-paginator)
+Check out the live demo of the "custom-paginator" project: [Live Demo](https://abdosakregy.github.io/custom-paginator-angular/)
 
 ## Installation
 
