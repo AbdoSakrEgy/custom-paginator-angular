@@ -2,6 +2,10 @@
 
 How to paginate some data using custom styles.
 
+## Demo
+
+Check out the live demo of the "user-info" project: [Live Demo](https://abdosakregy.github.io/custom-paginator)
+
 ## Installation
 
 Follow these instructions to run the project locally on your machine:
