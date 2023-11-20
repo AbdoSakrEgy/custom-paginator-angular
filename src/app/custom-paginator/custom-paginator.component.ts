@@ -43,52 +43,52 @@ export class CustomPaginatorComponent implements OnInit {
 //---------------------------------------------------------
 export const tasksList: any[] = [
   {
-    img: '../../assets/task1.jpg',
+    img: 'assets/task1.jpg',
     title: 'task1',
     deadLine: '29-11-2029',
   },
   {
-    img: '../../assets/task2.jpg',
+    img: 'assets/task2.jpg',
     title: 'task2',
     deadLine: '29-11-2029',
   },
   {
-    img: '../../assets/task3.jpg',
+    img: 'assets/task3.jpg',
     title: 'task3',
     deadLine: '29-11-2029',
   },
   {
-    img: '../../assets/task4.jpg',
+    img: 'assets/task4.jpg',
     title: 'task4',
     deadLine: '29-11-2029',
   },
   {
-    img: '../../assets/task5.jpg',
+    img: 'assets/task5.jpg',
     title: 'task5',
     deadLine: '29-11-2029',
   },
   {
-    img: '../../assets/task6.jpg',
+    img: 'assets/task6.jpg',
     title: 'task6',
     deadLine: '29-11-2029',
   },
   {
-    img: '../../assets/task7.jpg',
+    img: 'assets/task7.jpg',
     title: 'task7',
     deadLine: '29-11-2029',
   },
   {
-    img: '../../assets/task8.jpg',
+    img: 'assets/task8.jpg',
     title: 'task8',
     deadLine: '29-11-2029',
   },
   {
-    img: '../../assets/task9.jpg',
+    img: 'assets/task9.jpg',
     title: 'task9',
     deadLine: '29-11-2029',
   },
   {
-    img: '../../assets/task10.jpg',
+    img: 'assets/task10.jpg',
     title: 'task10',
     deadLine: '29-11-2029',
   },
