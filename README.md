@@ -1,13 +1,10 @@
 # Custom pagination
-
 How to paginate some data using custom styles.
 
 ## Demo
-
 Check out the live demo of the "custom-paginator" project: [Live Demo](https://abdosakregy.github.io/custom-paginator-angular/)
 
 ## Installation
-
 Follow these instructions to run the project locally on your machine:
 
 1. Download the angular project
@@ -35,7 +32,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./custom-paginator.component.css'],
 })
 export class CustomPaginatorComponent implements OnInit {
-  tasksList = tasksList;
+  tasksList = tasksListData;
   tasks: any[] = [];
   tasksPerPage: number = 4;
   public selectedPage = 1;
@@ -67,63 +64,74 @@ export class CustomPaginatorComponent implements OnInit {
     this.tasks = [];
     this.tasks = this.tasksList.slice(pageIndex, endIndex);
   }
+  // previousPage() - nextPage()
+  previousPage() {
+    if (this.selectedPage > 1) {
+      this.changePage(this.selectedPage - 1);
+    }
+  }
+  nextPage() {
+    if (this.selectedPage < this.pageNumbers.length) {
+      this.changePage(this.selectedPage + 1);
+    }
+  }
 }
 
 //---------------------------------------------------------
-export const tasksList: any[] = [
+export const tasksListData: any[] = [
   {
-    img: '../../assets/task1.jpg',
+    img: 'assets/task1.jpg',
     title: 'task1',
     deadLine: '29-11-2029',
   },
   {
-    img: '../../assets/task2.jpg',
+    img: 'assets/task2.jpg',
     title: 'task2',
     deadLine: '29-11-2029',
   },
   {
-    img: '../../assets/task3.jpg',
+    img: 'assets/task3.jpg',
     title: 'task3',
     deadLine: '29-11-2029',
   },
   {
-    img: '../../assets/task4.jpg',
+    img: 'assets/task4.jpg',
     title: 'task4',
     deadLine: '29-11-2029',
   },
   {
-    img: '../../assets/task5.jpg',
+    img: 'assets/task5.jpg',
     title: 'task5',
     deadLine: '29-11-2029',
   },
   {
-    img: '../../assets/task6.jpg',
+    img: 'assets/task6.jpg',
     title: 'task6',
     deadLine: '29-11-2029',
   },
   {
-    img: '../../assets/task7.jpg',
+    img: 'assets/task7.jpg',
     title: 'task7',
     deadLine: '29-11-2029',
   },
   {
-    img: '../../assets/task8.jpg',
+    img: 'assets/task8.jpg',
     title: 'task8',
     deadLine: '29-11-2029',
   },
   {
-    img: '../../assets/task9.jpg',
+    img: 'assets/task9.jpg',
     title: 'task9',
     deadLine: '29-11-2029',
   },
   {
-    img: '../../assets/task10.jpg',
+    img: 'assets/task10.jpg',
     title: 'task10',
     deadLine: '29-11-2029',
   },
 ];
-
 ```
+
 custom-paginator.html
 ```html
 <!-- data view -->
@@ -132,10 +140,7 @@ custom-paginator.html
 </div>
 <main class="flex justify-center items-center gap-3 flex-wrap p-5">
   <div class="card" *ngFor="let task of tasks">
-    <div class="img-card">
-      <img [src]="task.img" alt="task img" class="" />
-    </div>
-    <h1 class="text-xl mb-5 text-[#cb075a]">{{ task.title }}</h1>
+    <div class="text-5xl mb-5 text-[#cb075a]">{{ task.title }}</div>
     <span class="text-xs mb-2 text-[#b1b0b2]">
       Dead-Line date:{{ task.deadLine }}
     </span>
@@ -158,6 +163,9 @@ custom-paginator.html
     <option value="5">5</option>
     <option value="10">10</option>
   </select>
+  <button class="hover:cursor-pointer" (click)="previousPage()">
+    Previous
+  </button>
   <div class="flex justify-center items-center gap-3">
     <button
       [class]="{
@@ -170,6 +178,7 @@ custom-paginator.html
       {{ page }}
     </button>
   </div>
+  <button class="hover:cursor-pointer" (click)="nextPage()">Next</button>
 </main>
 ```
 
