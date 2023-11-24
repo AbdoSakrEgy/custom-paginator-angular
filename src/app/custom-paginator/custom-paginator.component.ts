@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./custom-paginator.component.css'],
 })
 export class CustomPaginatorComponent implements OnInit {
-  tasksList = tasksList;
+  tasksList = tasksListData;
   tasks: any[] = [];
   tasksPerPage: number = 4;
   public selectedPage = 1;
@@ -38,10 +38,21 @@ export class CustomPaginatorComponent implements OnInit {
     this.tasks = [];
     this.tasks = this.tasksList.slice(pageIndex, endIndex);
   }
+  // previousPage() - nextPage()
+  previousPage() {
+    if (this.selectedPage > 1) {
+      this.changePage(this.selectedPage - 1);
+    }
+  }
+  nextPage() {
+    if (this.selectedPage < this.pageNumbers.length) {
+      this.changePage(this.selectedPage + 1);
+    }
+  }
 }
 
 //---------------------------------------------------------
-export const tasksList: any[] = [
+export const tasksListData: any[] = [
   {
     img: 'assets/task1.jpg',
     title: 'task1',
