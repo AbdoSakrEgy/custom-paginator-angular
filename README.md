@@ -4,7 +4,7 @@ How to paginate some data using custom styles.
 
 ## Demo
 
-Check out the live demo of the "custom-paginator" project: [Live Demo](https://abdosakregy.github.io/custom-paginator)
+Check out the live demo of the "custom-paginator" project: [Live Demo](https://abdosakregy.github.io/custom-paginator-angular/)
 
 ## Installation
 
@@ -25,34 +25,6 @@ ng serve -open
 ```
 
 ## Files
-custom-paginator.css
-```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer components {
-  .card {
-    @apply flex flex-col w-fit border border-gray-300 p-5;
-  }
-  .img-card {
-    @apply w-[190px] h-[150px];
-  }
-  .btnDetails {
-    @apply px-4 py-2 border shadow-md rounded-md;
-  }
-  .btnComplete {
-    @apply px-4 py-2 border shadow-md rounded-md bg-[#f64236] text-white;
-  }
-  .btnOfPagination {
-    @apply border border-black rounded-full w-7 h-7;
-  }
-  .btnOfPaginationActive {
-    @apply border border-black rounded-full w-7 h-7 bg-black text-white;
-  }
-}
-
-```
 custom-paginator.ts
 ```typescript
 import { Component, OnInit } from '@angular/core';
@@ -71,7 +43,7 @@ export class CustomPaginatorComponent implements OnInit {
 
   ngOnInit(): void {
     let pageIndex = (this.selectedPage - 1) * this.tasksPerPage;
-    this.tasks = tasksList.slice(pageIndex, this.tasksPerPage);
+    this.tasks = this.tasksList.slice(pageIndex, this.tasksPerPage);
   }
   changePageSize(event: Event) {
     const newSize = (event.target as HTMLInputElement).value;
@@ -79,7 +51,7 @@ export class CustomPaginatorComponent implements OnInit {
     this.changePage(1);
   }
   get pageNumbers(): number[] {
-    return Array(Math.ceil(tasksList.length / this.tasksPerPage))
+    return Array(Math.ceil(this.tasksList.length / this.tasksPerPage))
       .fill(0)
       .map((x, i) => i + 1);
   }
