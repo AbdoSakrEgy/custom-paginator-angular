@@ -42,11 +42,13 @@ export class CustomPaginatorComponent implements OnInit {
   ngOnInit(): void {
     let pageIndex = (this.selectedPage - 1) * this.tasksPerPage;
     this.tasks = this.tasksList.slice(pageIndex, this.tasksPerPage);
+    this.setPageNumbers();
   }
   changePageSize(event: Event) {
     const newSize = (event.target as HTMLInputElement).value;
     this.tasksPerPage = Number(newSize);
     this.changePage(1);
+    this.setPageNumbers();
   }
   setPageNumbers() {
     this.pageNumbers = Array(
