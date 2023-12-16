@@ -8,51 +8,43 @@ import { Component, OnInit } from '@angular/core';
 export class CustomPaginatorComponent implements OnInit {
   tasksList = tasksListData;
   tasks: any[] = [];
-  tasksPerPage: number = 4;
+  tasksPerPage = 4;
   selectedPage = 1;
   pageNumbers = [1];
   activePageNumber = 1;
 
   ngOnInit(): void {
-    let pageIndex = (this.selectedPage - 1) * this.tasksPerPage;
-    this.tasks = this.tasksList.slice(pageIndex, this.tasksPerPage);
-    this.setPageNumbers();
+    this.setPage(this.selectedPage);
   }
-  changePageSize(event: Event) {
-    const newSize = (event.target as HTMLInputElement).value;
-    this.tasksPerPage = Number(newSize);
-    this.changePage(1);
-    this.setPageNumbers();
-  }
-  setPageNumbers() {
+  setPage(page: number) {
+    const startIndex = (page - 1) * this.tasksPerPage;
+    const endIndex = startIndex + this.tasksPerPage;
+    this.tasks = this.tasksList.slice(startIndex, endIndex);
     this.pageNumbers = Array(
       Math.ceil(this.tasksList.length / this.tasksPerPage)
     )
       .fill(0)
       .map((x, i) => i + 1);
+    this.activePageNumber = page;
+    this.selectedPage = page;
+  }
+  // changePageSize() - changePage()
+  changePageSize(event: Event) {
+    const newSize = (event.target as HTMLInputElement).value;
+    this.tasksPerPage = +newSize;
+    this.setPage(1);
   }
   changePage(page: any) {
-    this.selectedPage = page;
-    this.slicedTasks();
-    this.activePageNumber = page;
-  }
-  slicedTasks() {
-    let pageIndex = (this.selectedPage - 1) * this.tasksPerPage;
-    let endIndex =
-      (this.selectedPage - 1) * this.tasksPerPage + this.tasksPerPage;
-    this.tasks = [];
-    this.tasks = this.tasksList.slice(pageIndex, endIndex);
+    if (page >= 1 && page <= this.pageNumbers.length) {
+      this.setPage(page);
+    }
   }
   // previousPage() - nextPage()
   previousPage() {
-    if (this.selectedPage > 1) {
-      this.changePage(this.selectedPage - 1);
-    }
+    this.changePage(this.selectedPage - 1);
   }
   nextPage() {
-    if (this.selectedPage < this.pageNumbers.length) {
-      this.changePage(this.selectedPage + 1);
-    }
+    this.changePage(this.selectedPage + 1);
   }
 }
 
