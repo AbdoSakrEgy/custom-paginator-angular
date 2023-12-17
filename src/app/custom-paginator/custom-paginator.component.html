@@ -1,46 +1,33 @@
-<!-- data view -->
-<div class="text-bold text-4xl text-center p-5">
-  How to create custom pagination
-</div>
-<main class="flex justify-center items-center gap-3 flex-wrap p-5">
-  <div class="card" *ngFor="let task of tasks">
-    <div class="text-5xl mb-5 text-[#cb075a]">{{ task.title }}</div>
-    <span class="text-xs mb-2 text-[#b1b0b2]">
-      Dead-Line date:{{ task.deadLine }}
-    </span>
-    <span class="text-xs mb-2">desc</span>
-    <div class="flex gap-2">
-      <button class="btnDetails">Details</button>
-      <button class="btnComplete">Complete</button>
-    </div>
-  </div>
-</main>
-<!-- paginator -->
-<main class="flex justify-center items-center gap-3">
-  <select
-    [value]="tasksPerPage"
-    (change)="changePageSize($event)"
-    style="border: 1px solid black; border-radius: 5px; outline: none"
-  >
-    <option value="1">1</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="10">10</option>
-  </select>
-  <button class="hover:cursor-pointer" (click)="previousPage()">
-    Previous
-  </button>
+<main class="p-5 flex flex-col gap-5">
   <div class="flex justify-center items-center gap-3">
-    <button
-      [class]="{
-        btnOfPagination: page != activePageNumber,
-        btnOfPaginationActive: page === activePageNumber
-      }"
-      *ngFor="let page of pageNumbers"
-      (click)="changePage(page)"
+    <select
+      [value]="tasksPerPage"
+      (change)="changePageSize($event)"
+      style="
+        border: 1px solid black;
+        border-radius: 5px;
+        outline: none;
+        margin-right: 40px;
+      "
     >
-      {{ page }}
-    </button>
+      <option value="1">1</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="10">10</option>
+    </select>
+    <button class="btn-previous" (click)="previousPage()">Previous</button>
+    <div class="flex justify-center items-center gap-3">
+      <button
+        [class]="{
+          btnOfPagination: page != activePageNumber,
+          btnOfPaginationActive: page === activePageNumber
+        }"
+        *ngFor="let page of pageNumbers"
+        (click)="changePage(page)"
+      >
+        {{ page }}
+      </button>
+    </div>
+    <button class="btn-next" (click)="nextPage()">Next</button>
   </div>
-  <button class="hover:cursor-pointer" (click)="nextPage()">Next</button>
 </main>

@@ -1,0 +1,9 @@
+<main class="text-white px-5">
+  <div class="text-2xl font-bold">View data in component 1:-</div>
+  <ul>
+    <li *ngFor="let user of usersToView" class="text-[#f64236] text-lg">
+      {{ user.username }}
+    </li>
+  </ul>
+</main>
+<app-custom-paginator></app-custom-paginator>

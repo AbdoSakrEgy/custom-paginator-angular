@@ -10,15 +10,21 @@
     @apply w-[190px] h-[150px];
   }
   .btnDetails {
-    @apply px-4 py-2 border shadow-md rounded-md;
+    @apply px-4 py-2 border shadow-md rounded-md bg-[#DADDE2] text-black border-none;
   }
   .btnComplete {
-    @apply px-4 py-2 border shadow-md rounded-md bg-[#f64236] text-white;
+    @apply px-4 py-2 border shadow-md rounded-md bg-[#f64236] text-white border-none;
   }
   .btnOfPagination {
-    @apply border border-black rounded-full w-7 h-7;
+    @apply border border-[#dadde2] rounded-full w-7 h-7 text-[#dadde2];
   }
   .btnOfPaginationActive {
-    @apply border border-black rounded-full w-7 h-7 bg-black text-white;
+    @apply border border-[#dadde2] rounded-full w-7 h-7 bg-[#dadde2];
+  }
+  .btn-next {
+    @apply hover:cursor-pointer rounded-md p-1 bg-[#dadde2] text-black;
+  }
+  .btn-previous {
+    @apply hover:cursor-pointer rounded-md p-1 bg-[#dadde2] text-black;
   }
 }
