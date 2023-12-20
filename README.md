@@ -159,3 +159,50 @@ custom-paginator.html
 </main>
 ```
 
+custom-paginator.actions.ts
+```typescript
+import { createAction, props } from '@ngrx/store';
+
+export const modifyCustomPaginatorData = createAction(
+  '[custom paginator] modify data',
+  props<{ data: any }>()
+);
+```
+
+custom-paginator.reducer.ts
+```typescript
+import { createReducer, on } from '@ngrx/store';
+import { modifyCustomPaginatorData } from '../actions/custom-paginator.actions';
+
+export const initialState = {
+  tasks: [],
+  tasksPerPage: 4,
+  selectedPage: 1,
+  pageNumbers: [1],
+  activePageNumber: 1,
+};
+
+export const customPaginatorReducer = createReducer(
+  initialState,
+  on(modifyCustomPaginatorData, (state, { data }) => ({
+    tasks: data.tasks,
+    tasksPerPage: data.tasksPerPage,
+    selectedPage: data.selectedPage,
+    pageNumbers: data.pageNumbers,
+    activePageNumber: data.activePageNumber,
+  }))
+);
+```
+
+custom-paginator.selectors.ts
+```typescript
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+
+export const selectCustomPaginatorState =
+  createFeatureSelector<any>('customPaginator');
+
+export const selectCustomPaginatorInfo = createSelector(
+  selectCustomPaginatorState,
+  (state) => state
+);
+```
