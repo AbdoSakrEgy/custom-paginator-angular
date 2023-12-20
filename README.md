@@ -36,29 +36,38 @@ import { selectCustomPaginatorInfo } from '../store/selectors/custom-paginator.s
   styleUrls: ['./custom-paginator.component.css'],
 })
 export class CustomPaginatorComponent implements OnInit {
-  isTasksListUpdated$ = this.store.select(selectTasks).subscribe({
-    next: (res: any) => {
-      this.tasksList = res;
-      this.setPage(this.selectedPage);
-    },
-  });
-  isCustomPaginatorInfoUpdated$ = this.store
-    .select(selectCustomPaginatorInfo)
-    .subscribe({
-      next: (res: any) => {
-        this.tasks = res.tasks;
-        this.tasksPerPage = res.tasksPerPage;
-        this.selectedPage = res.selectedPage;
-        this.pageNumbers = res.pageNumbers;
-        this.activePageNumber = res.activePageNumber;
-      },
-    });
   tasksList = [];
   tasks: any[] = [];
   tasksPerPage = 4;
   selectedPage = 1;
   pageNumbers = [1];
   activePageNumber = 1;
+  isTasksListUpdated$ = this.store.select(selectTasks).subscribe({
+    next: (res: any) => {
+      this.store.select(selectCustomPaginatorInfo).subscribe({
+        next: (res: any) => {
+          this.tasks = res.tasks;
+          this.tasksPerPage = res.tasksPerPage;
+          this.selectedPage = res.selectedPage;
+          this.pageNumbers = res.pageNumbers;
+          this.activePageNumber = res.activePageNumber;
+        },
+      });
+      this.tasksList = res;
+      this.setPage(this.selectedPage);
+    },
+  });
+  // isCustomPaginatorInfoUpdated$ = this.store
+  //   .select(selectCustomPaginatorInfo)
+  //   .subscribe({
+  //     next: (res: any) => {
+  //       this.tasks = res.tasks;
+  //       this.tasksPerPage = res.tasksPerPage;
+  //       this.selectedPage = res.selectedPage;
+  //       this.pageNumbers = res.pageNumbers;
+  //       this.activePageNumber = res.activePageNumber;
+  //     },
+  //   });
 
   constructor(private store: Store) {}
   ngOnInit(): void {
