@@ -221,14 +221,14 @@ import { selectCustomPaginatorInfo } from '../store/selectors/custom-paginator.s
   styleUrls: ['./data-viewer1.component.css'],
 })
 export class DataViewer1Component {
-  isUsersToViewUpdated$ = this.store
+  isTasksToViewUpdated$ = this.store
     .select(selectCustomPaginatorInfo)
     .subscribe({
       next: (res: any) => {
-        this.usersToView = res.tasks;
+        this.tasksToView = res.tasks;
       },
     });
-  usersToView: any[] = [];
+  tasksToView: any[] = [];
 
   constructor(private store: Store) {}
 }
@@ -239,8 +239,8 @@ data-viewer1.component.html
 <main class="text-white px-5">
   <div class="text-2xl font-bold">View data in component 1:-</div>
   <ul>
-    <li *ngFor="let user of usersToView" class="text-[#f64236] text-lg">
-      {{ user.username }}
+    <li *ngFor="let task of tasksToView" class="text-[#f64236] text-lg">
+      {{ task.username }}
     </li>
   </ul>
 </main>
