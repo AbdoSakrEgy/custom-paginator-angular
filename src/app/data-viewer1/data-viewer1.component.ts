@@ -8,14 +8,14 @@ import { selectCustomPaginatorInfo } from '../store/selectors/custom-paginator.s
   styleUrls: ['./data-viewer1.component.css'],
 })
 export class DataViewer1Component {
-  isUsersToViewUpdated$ = this.store
+  isTasksToViewUpdated$ = this.store
     .select(selectCustomPaginatorInfo)
     .subscribe({
       next: (res: any) => {
-        this.usersToView = res.tasks;
+        this.tasksToView = res.tasks;
       },
     });
-  usersToView: any[] = [];
+  tasksToView: any[] = [];
 
   constructor(private store: Store) {}
 }
