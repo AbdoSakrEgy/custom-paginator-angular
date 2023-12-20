@@ -1,5 +1,17 @@
-<main class="min-h-screen flex flex-col gap-20 bg-[#2F4858]">
-  <app-custom-paginator></app-custom-paginator>
-  <app-data-viewer1></app-data-viewer1>
-  <app-data-viewer2></app-data-viewer2>
+<main class="min-h-screen bg-[#2F4858]">
+  <nav class="navbar">
+    <a routerLink="custom-paginator" routerLinkActive="active" class="menu">
+      Custom paginator
+    </a>
+    <a routerLink="data-viewer1" routerLinkActive="active" class="menu">
+      Data viewer 1
+    </a>
+    <a routerLink="data-viewer2" routerLinkActive="active" class="menu">
+      Data viewer 2
+    </a>
+    <a routerLink="data-changer" routerLinkActive="active" class="menu">
+      Data changer
+    </a>
+  </nav>
+  <router-outlet></router-outlet>
 </main>

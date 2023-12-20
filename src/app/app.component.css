@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .navbar {
+    @apply flex justify-between font-semibold text-lg mb-5 p-5 text-white bg-[#04212F];
+  }
+  .menu {
+    @apply p-2 hover:cursor-pointer;
+  }
+  .active {
+    @apply rounded-md bg-[#2f4858];
+  }
+}
