@@ -20,8 +20,57 @@ npm install
 ```bash
 ng serve -open
 ```
+##
+## Files 1
+custom-paginator.actions.ts
+```typescript
+import { createAction, props } from '@ngrx/store';
 
-## Files
+export const modifyCustomPaginatorData = createAction(
+  '[custom paginator] modify data',
+  props<{ data: any }>()
+);
+```
+
+custom-paginator.reducer.ts
+```typescript
+import { createReducer, on } from '@ngrx/store';
+import { modifyCustomPaginatorData } from '../actions/custom-paginator.actions';
+
+export const initialState = {
+  tasks: [],
+  tasksPerPage: 4,
+  selectedPage: 1,
+  pageNumbers: [1],
+  activePageNumber: 1,
+};
+
+export const customPaginatorReducer = createReducer(
+  initialState,
+  on(modifyCustomPaginatorData, (state, { data }) => ({
+    tasks: data.tasks,
+    tasksPerPage: data.tasksPerPage,
+    selectedPage: data.selectedPage,
+    pageNumbers: data.pageNumbers,
+    activePageNumber: data.activePageNumber,
+  }))
+);
+```
+
+custom-paginator.selectors.ts
+```typescript
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+
+export const selectCustomPaginatorState =
+  createFeatureSelector<any>('customPaginator');
+
+export const selectCustomPaginatorInfo = createSelector(
+  selectCustomPaginatorState,
+  (state) => state
+);
+```
+##
+## Files 2
 custom-paginator.ts
 ```typescript
 import { Component, OnInit } from '@angular/core';
@@ -158,51 +207,42 @@ custom-paginator.html
   </div>
 </main>
 ```
-
-custom-paginator.actions.ts
+##
+## Files 3
+data-viewer1.component.ts
 ```typescript
-import { createAction, props } from '@ngrx/store';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { selectCustomPaginatorInfo } from '../store/selectors/custom-paginator.selectors';
 
-export const modifyCustomPaginatorData = createAction(
-  '[custom paginator] modify data',
-  props<{ data: any }>()
-);
+@Component({
+  selector: 'app-data-viewer1',
+  templateUrl: './data-viewer1.component.html',
+  styleUrls: ['./data-viewer1.component.css'],
+})
+export class DataViewer1Component {
+  isUsersToViewUpdated$ = this.store
+    .select(selectCustomPaginatorInfo)
+    .subscribe({
+      next: (res: any) => {
+        this.usersToView = res.tasks;
+      },
+    });
+  usersToView: any[] = [];
+
+  constructor(private store: Store) {}
+}
 ```
 
-custom-paginator.reducer.ts
-```typescript
-import { createReducer, on } from '@ngrx/store';
-import { modifyCustomPaginatorData } from '../actions/custom-paginator.actions';
-
-export const initialState = {
-  tasks: [],
-  tasksPerPage: 4,
-  selectedPage: 1,
-  pageNumbers: [1],
-  activePageNumber: 1,
-};
-
-export const customPaginatorReducer = createReducer(
-  initialState,
-  on(modifyCustomPaginatorData, (state, { data }) => ({
-    tasks: data.tasks,
-    tasksPerPage: data.tasksPerPage,
-    selectedPage: data.selectedPage,
-    pageNumbers: data.pageNumbers,
-    activePageNumber: data.activePageNumber,
-  }))
-);
-```
-
-custom-paginator.selectors.ts
-```typescript
-import { createFeatureSelector, createSelector } from '@ngrx/store';
-
-export const selectCustomPaginatorState =
-  createFeatureSelector<any>('customPaginator');
-
-export const selectCustomPaginatorInfo = createSelector(
-  selectCustomPaginatorState,
-  (state) => state
-);
+data-viewer1.component.html
+```html
+<main class="text-white px-5">
+  <div class="text-2xl font-bold">View data in component 1:-</div>
+  <ul>
+    <li *ngFor="let user of usersToView" class="text-[#f64236] text-lg">
+      {{ user.username }}
+    </li>
+  </ul>
+</main>
+<app-custom-paginator></app-custom-paginator>
 ```
