@@ -21,7 +21,7 @@ npm install
 ng serve -open
 ```
 ##
-## Files 1
+## Store files
 custom-paginator.actions.ts
 ```typescript
 import { createAction, props } from '@ngrx/store';
@@ -70,7 +70,7 @@ export const selectCustomPaginatorInfo = createSelector(
 );
 ```
 ##
-## Files 2
+## Paginator files
 custom-paginator.ts
 ```typescript
 import { Component, OnInit } from '@angular/core';
@@ -208,7 +208,7 @@ custom-paginator.html
 </main>
 ```
 ##
-## Files 3
+## DataViewer files
 data-viewer1.component.ts
 ```typescript
 import { Component, OnInit } from '@angular/core';
