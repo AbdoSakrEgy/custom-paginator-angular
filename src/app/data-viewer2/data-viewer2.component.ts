@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectCustomPaginatorInfo } from '../store/selectors/custom-paginator.selectors';
+import { selectIsLoadingTasks } from '../store/selectors/tasks.selectors';
 
 @Component({
   selector: 'app-data-viewer2',
@@ -8,6 +9,8 @@ import { selectCustomPaginatorInfo } from '../store/selectors/custom-paginator.s
   styleUrls: ['./data-viewer2.component.css'],
 })
 export class DataViewer2Component {
+  tasksToView: any[] = [];
+  isLoading$ = this.store.select(selectIsLoadingTasks);
   isTasksToViewUpdated$ = this.store
     .select(selectCustomPaginatorInfo)
     .subscribe({
@@ -15,7 +18,6 @@ export class DataViewer2Component {
         this.tasksToView = res.tasks;
       },
     });
-  tasksToView: any[] = [];
 
   constructor(private store: Store) {}
 }
